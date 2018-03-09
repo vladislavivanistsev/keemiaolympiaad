@@ -1,0 +1,21 @@
+Sub FormulaFontSizeChanger
+  o = ThisComponent.getEmbeddedObjects()
+  fontSize = 12
+  fontFamily = "Arial"
+  For i = 0 to o.count-1
+    if (not IsNull(o(i))) and (not IsNull(o(i).Model)) then
+      o(i).Model.TopMargin = 0
+      o(i).Model.BottomMargin = 0
+      o(i).Model.LeftMargin = 0
+      o(i).Model.RightMargin = 0
+      o(i).Model.BaseFontHeight = fontSize
+      o(i).Model.FontNameVariables = fontFamily
+      o(i).Model.FontVariablesIsItalic = 1
+      o(i).Model.FontNameFunctions = fontFamily
+      o(i).Model.FontNameNumbers = fontFamily
+      o(i).Model.FontNameText = fontFamily
+      o(i).Component.BaseFontHeight = fontSize
+      o(i).ExtendedControlOverEmbeddedObject.update()
+    endif
+  Next i
+End Sub
